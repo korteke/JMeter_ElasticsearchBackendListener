@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.visualizers.backend.AbstractBackendListenerClient;
@@ -49,7 +49,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 	private static final Object STATIC_LOCK = new Object();
 
 	/**
-	 * Placeholder for ES connection status
+	 * ES connection status
 	 */
 	private boolean isESAlive = false;
 
@@ -91,7 +91,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 			if (isESAlive) {
 				LOGGER.info("Elasticsearch is UP!");
 			} else {
-				LOGGER.info("Elasticsearch is DOWN!");
+				LOGGER.error("Elasticsearch is DOWN!");
 			}
 
 		} catch (IOException e) {
@@ -109,7 +109,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 	public void handleSampleResults(List<SampleResult> sampleResults, BackendListenerContext ctx) {
 
 		if (!isESAlive) {
-			LOGGER.info("Elasticsearch is DOWN. Quitting");
+			LOGGER.error("Elasticsearch is DOWN. Quitting");
 			return;
 		}
 
@@ -132,7 +132,8 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 				esResu.setGroupName(sampleResult.getSampleLabel(true).substring(0,
 						sampleResult.getSampleLabel(true).indexOf(sampleResult.getSampleLabel()) - 1));
 
-				// For Elasticsearch mapping. Mapping states that the ResponseCode must be numeric
+				// For Elasticsearch mapping. Mapping states that the
+				// ResponseCode must be numeric
 				if (sampleResult.isResponseCodeOK() && StringUtils.isNumeric(sampleResult.getResponseCode())) {
 					esResu.setResponseCode(sampleResult.getResponseCode());
 				} else {
@@ -161,25 +162,16 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 						+ ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/"
 						+ ctx.getParameter(ES_TYPE);
 
-				LOGGER.info("Elasticsearch request URL: " + esEndpoint);
-				LOGGER.info("Elasticsearch request data:\n" + esResuJson);
+				LOGGER.debug("Elasticsearch request URL: " + esEndpoint);
+				LOGGER.debug("Elasticsearch request data:\n" + esResuJson);
 
 				Response response = null;
 
 				try {
 					response = callES(esEndpoint, esResuJson, client);
-
-					boolean resu = response.isSuccessful();
-					isESAlive = resu ? true : false;
-
-					if (isESAlive) {
-						LOGGER.debug("Elasticsearch response code: " + response.code());
-						LOGGER.debug("Elasticsearch response data:\n" + response.toString());
-					} else {
-						LOGGER.debug("Elasticsearch response code: " + response.code());
-						LOGGER.debug("Elasticsearch response data:\n" + response.toString());
-						LOGGER.error("Elasticsearch is DOWN");
-					}
+					
+					LOGGER.debug("Elasticsearch response code: " + response.code());
+					LOGGER.debug("Elasticsearch response data:\n" + response.toString());
 
 				} catch (IOException e) {
 					LOGGER.error("Error with the Elasticsearch connection.");
