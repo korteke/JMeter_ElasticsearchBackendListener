@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.visualizers.backend.AbstractBackendListenerClient;
@@ -36,6 +36,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 	private static final String ES_INDEX = "elasticsearch.index";
 	private static final String ES_TYPE = "elasticsearch.type";
 	private static final String ES_TIMESTAMP = "elasticsearch.timestamp";
+	private static final String ES_STATUSCODE = "elasticsearch.statuscode";
 
 	/**
 	 * Initialize logger
@@ -66,6 +67,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 		parameters.addArgument(ES_INDEX, "jmeter");
 		parameters.addArgument(ES_TYPE, null);
 		parameters.addArgument(ES_TIMESTAMP, "yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
+		parameters.addArgument(ES_STATUSCODE, "531");
 		return parameters;
 	}
 
@@ -129,7 +131,14 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 				esResu.setSampleLabel(sampleResult.getSampleLabel());
 				esResu.setGroupName(sampleResult.getSampleLabel(true).substring(0,
 						sampleResult.getSampleLabel(true).indexOf(sampleResult.getSampleLabel()) - 1));
-				esResu.setResponseCode(sampleResult.getResponseCode());
+
+				// For Elasticsearch mapping. Mapping states that the ResponseCode must be numeric
+				if (sampleResult.isResponseCodeOK() && StringUtils.isNumeric(sampleResult.getResponseCode())) {
+					esResu.setResponseCode(sampleResult.getResponseCode());
+				} else {
+					esResu.setResponseCode(ctx.getParameter(ES_STATUSCODE));
+				}
+
 				esResu.setIsResponseCodeOk(sampleResult.isResponseCodeOK());
 				esResu.setIsSuccessful(sampleResult.isSuccessful());
 				esResu.setSampleCount(sampleResult.getSampleCount());
@@ -149,7 +158,8 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 				String esResuJson = gson.toJson(esResu);
 
 				String esEndpoint = ctx.getParameter(ES_PROTOCOL) + "://" + ctx.getParameter(ES_HOST) + ":"
-						+ ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/" + ctx.getParameter(ES_TYPE);
+						+ ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/"
+						+ ctx.getParameter(ES_TYPE);
 
 				LOGGER.info("Elasticsearch request URL: " + esEndpoint);
 				LOGGER.info("Elasticsearch request data:\n" + esResuJson);
@@ -163,14 +173,15 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 					isESAlive = resu ? true : false;
 
 					if (isESAlive) {
-						LOGGER.info("Elasticsearch response code: " + response.code());
-						LOGGER.info("Elasticsearch response data:\n" + response.toString());
+						LOGGER.debug("Elasticsearch response code: " + response.code());
+						LOGGER.debug("Elasticsearch response data:\n" + response.toString());
 					} else {
-						LOGGER.info("Elasticsearch response code: " + response.code());
-						LOGGER.info("Elasticsearch is DOWN");
+						LOGGER.debug("Elasticsearch response code: " + response.code());
+						LOGGER.debug("Elasticsearch response data:\n" + response.toString());
+						LOGGER.error("Elasticsearch is DOWN");
 					}
 
-				} catch (Exception e) {
+				} catch (IOException e) {
 					LOGGER.error("Error with the Elasticsearch connection.");
 				}
 
@@ -196,8 +207,14 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 	private Response callES(String url, String json, OkHttpClient client) throws IOException {
 		RequestBody body = RequestBody.create(JSON, json);
 		Request request = new Request.Builder().url(url).post(body).build();
-		try (Response response = client.newCall(request).execute()) {
+
+		Response response = null;
+		try {
+			response = client.newCall(request).execute();
 			return response;
+		} finally {
+			response.body().close();
 		}
+
 	}
 }
