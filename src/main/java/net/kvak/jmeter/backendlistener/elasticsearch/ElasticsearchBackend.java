@@ -149,8 +149,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 				String esResuJson = gson.toJson(esResu);
 
 				String esEndpoint = ctx.getParameter(ES_PROTOCOL) + "://" + ctx.getParameter(ES_HOST) + ":"
-						+ ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/" + ctx.getParameter(ES_TYPE)
-						+ "/" + UUID.randomUUID().toString();
+						+ ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/" + ctx.getParameter(ES_TYPE);
 
 				LOGGER.info("Elasticsearch request URL: " + esEndpoint);
 				LOGGER.info("Elasticsearch request data:\n" + esResuJson);
@@ -167,6 +166,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 						LOGGER.info("Elasticsearch response code: " + response.code());
 						LOGGER.info("Elasticsearch response data:\n" + response.toString());
 					} else {
+						LOGGER.info("Elasticsearch response code: " + response.code());
 						LOGGER.info("Elasticsearch is DOWN");
 					}
 
@@ -195,7 +195,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 	 */
 	private Response callES(String url, String json, OkHttpClient client) throws IOException {
 		RequestBody body = RequestBody.create(JSON, json);
-		Request request = new Request.Builder().url(url).put(body).build();
+		Request request = new Request.Builder().url(url).post(body).build();
 		try (Response response = client.newCall(request).execute()) {
 			return response;
 		}
