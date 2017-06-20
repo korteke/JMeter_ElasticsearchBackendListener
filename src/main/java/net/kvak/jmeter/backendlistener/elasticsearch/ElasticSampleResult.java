@@ -3,505 +3,278 @@ package net.kvak.jmeter.backendlistener.elasticsearch;
 import com.google.gson.annotations.SerializedName;
 
 public class ElasticSampleResult {
-
-	@SerializedName("Timestamp")
-	private String Timestamp;
+	@SerializedName("AllThreads")
+	private Long AllThreads;
 	
-	@SerializedName("StartTime")
-	private String StartTime;
+	@SerializedName("BodySize")
+	private int BodySize;
 	
-	@SerializedName("EndTime")
-	private String EndTime;
-	
-	@SerializedName("Time")
-	private Long Time;
-	
-	@SerializedName("Latency")
-	private Long Latency;
+	@SerializedName("Bytes")
+	private int Bytes;
 	
 	@SerializedName("ConnectTime")
 	private Long ConnectTime;
 	
-	@SerializedName("IdleTime")
-	private Long IdleTime;
-	
-	@SerializedName("SampleLabel")
-	private String SampleLabel;
-	
-	@SerializedName("GroupName")
-	private String GroupName;
-	
-	@SerializedName("ResponseCode")
-	private String ResponseCode;
-	
-	@SerializedName("IsResponseCodeOk")
-	private Boolean IsResponseCodeOk;
-	
-	@SerializedName("IsSuccessful")
-	private Boolean IsSuccessful;
-	
-	@SerializedName("SampleCount")
-	private Integer SampleCount;
-	
-	@SerializedName("ErrorCount")
-	private Integer ErrorCount;
-	
 	@SerializedName("ContentType")
 	private String ContentType;
-	
-	@SerializedName("MediaType")
-	private String MediaType;
 	
 	@SerializedName("DataType")
 	private String DataType;
 	
-	@SerializedName("RequestHeaders")
-	private String RequestHeaders;
+	@SerializedName("EndTime")
+	private String EndTime;
 	
-	@SerializedName("ResponseHeaders")
-	private String ResponseHeaders;
+	@SerializedName("ErrorCount")
+	private int ErrorCount;
 	
-	@SerializedName("HeadersSize")
-	private Integer HeadersSize;
+	@SerializedName("GrpThreads")
+	private int GrpThreads;
 	
-	@SerializedName("SamplerData")
-	private String SamplerData;
+	@SerializedName("IdleTime")
+	private Long IdleTime;
+	
+	@SerializedName("Latency")
+	private Long Latency;
+	
+	@SerializedName("ResponseCode")
+	private String ResponseCode;
 	
 	@SerializedName("ResponseMessage")
 	private String ResponseMessage;
 	
+	@SerializedName("ResponseTime")
+	private Long ResponseTime;
+	
+	@SerializedName("SampleCount")
+	private int SampleCount;
+	
+	@SerializedName("SampleLabel")
+	private String SampleLabel;
+	
+	@SerializedName("StartTime")
+	private String StartTime;
+	
+	@SerializedName("Success")
+	private String Success;
+	
+	@SerializedName("ThreadName")
+	private String ThreadName;
+	
+	@SerializedName("URL")
+	private String URL;
+	
+	@SerializedName("Timestamp")
+	private String Timestamp;
+	
+	@SerializedName("NormalizedTimestamp")
+	private String NormalizedTimestamp;
+
 	@SerializedName("ResponseData")
 	private String ResponseData;
-	
-	@SerializedName("BodySize")
-	private Integer BodySize;
-	
-	@SerializedName("Bytes")
-	private Integer Bytes;
 
-	/**
-	 * 
-	 * @return The Timestamp
-	 */
-	public String getTimestamp() {
-		return Timestamp;
+	@SerializedName("BuildNumber")
+	private int BuildNumber;
+
+	@SerializedName("ElapsedTime")
+	private String ElapsedTime;
+
+	public Long getAllThreads() {
+		return AllThreads;
 	}
 
-	/**
-	 * 
-	 * @param Timestamp
-	 *            The Timestamp
-	 */
-	public void setTimestamp(String Timestamp) {
-		this.Timestamp = Timestamp;
+	public void setAllThreads(Long allThreads) {
+		AllThreads = allThreads;
 	}
 
-	/**
-	 * 
-	 * @return The StartTime
-	 */
-	public String getStartTime() {
-		return StartTime;
+	public int getBodySize() {
+		return BodySize;
 	}
 
-	/**
-	 * 
-	 * @param StartTime
-	 *            The StartTime
-	 */
-	public void setStartTime(String StartTime) {
-		this.StartTime = StartTime;
+	public void setBodySize(int bodySize) {
+		BodySize = bodySize;
 	}
 
-	/**
-	 * 
-	 * @return The EndTime
-	 */
-	public String getEndTime() {
-		return EndTime;
+	public int getBytes() {
+		return Bytes;
 	}
 
-	/**
-	 * 
-	 * @param EndTime
-	 *            The EndTime
-	 */
-	public void setEndTime(String EndTime) {
-		this.EndTime = EndTime;
+	public void setBytes(int bytes) {
+		Bytes = bytes;
 	}
 
-	/**
-	 * 
-	 * @return The Time
-	 */
-	public Long getTime() {
-		return Time;
-	}
-
-	/**
-	 * 
-	 * @param Time
-	 *            The Time
-	 */
-	public void setTime(Long Time) {
-		this.Time = Time;
-	}
-
-	/**
-	 * 
-	 * @return The Latency
-	 */
-	public Long getLatency() {
-		return Latency;
-	}
-
-	/**
-	 * 
-	 * @param Latency
-	 *            The Latency
-	 */
-	public void setLatency(Long Latency) {
-		this.Latency = Latency;
-	}
-
-	/**
-	 * 
-	 * @return The ConnectTime
-	 */
 	public Long getConnectTime() {
 		return ConnectTime;
 	}
 
-	/**
-	 * 
-	 * @param ConnectTime
-	 *            The ConnectTime
-	 */
-	public void setConnectTime(Long ConnectTime) {
-		this.ConnectTime = ConnectTime;
+	public void setConnectTime(Long connectTime) {
+		ConnectTime = connectTime;
 	}
 
-	/**
-	 * 
-	 * @return The IdleTime
-	 */
-	public Long getIdleTime() {
-		return IdleTime;
-	}
-
-	/**
-	 * 
-	 * @param IdleTime
-	 *            The IdleTime
-	 */
-	public void setIdleTime(Long IdleTime) {
-		this.IdleTime = IdleTime;
-	}
-
-	/**
-	 * 
-	 * @return The SampleLabel
-	 */
-	public String getSampleLabel() {
-		return SampleLabel;
-	}
-
-	/**
-	 * 
-	 * @param SampleLabel
-	 *            The SampleLabel
-	 */
-	public void setSampleLabel(String SampleLabel) {
-		this.SampleLabel = SampleLabel;
-	}
-
-	/**
-	 * 
-	 * @return The GroupName
-	 */
-	public String getGroupName() {
-		return GroupName;
-	}
-
-	/**
-	 * 
-	 * @param GroupName
-	 *            The GroupName
-	 */
-	public void setGroupName(String GroupName) {
-		this.GroupName = GroupName;
-	}
-
-	/**
-	 * 
-	 * @return The ResponseCode
-	 */
-	public String getResponseCode() {
-		return ResponseCode;
-	}
-
-	/**
-	 * 
-	 * @param ResponseCode
-	 *            The ResponseCode
-	 */
-	public void setResponseCode(String ResponseCode) {
-		this.ResponseCode = ResponseCode;
-	}
-
-	/**
-	 * 
-	 * @return The IsResponseCodeOk
-	 */
-	public Boolean getIsResponseCodeOk() {
-		return IsResponseCodeOk;
-	}
-
-	/**
-	 * 
-	 * @param IsResponseCodeOk
-	 *            The IsResponseCodeOk
-	 */
-	public void setIsResponseCodeOk(Boolean IsResponseCodeOk) {
-		this.IsResponseCodeOk = IsResponseCodeOk;
-	}
-
-	/**
-	 * 
-	 * @return The IsSuccessful
-	 */
-	public Boolean getIsSuccessful() {
-		return IsSuccessful;
-	}
-
-	/**
-	 * 
-	 * @param IsSuccessful
-	 *            The IsSuccessful
-	 */
-	public void setIsSuccessful(Boolean IsSuccessful) {
-		this.IsSuccessful = IsSuccessful;
-	}
-
-	/**
-	 * 
-	 * @return The SampleCount
-	 */
-	public Integer getSampleCount() {
-		return SampleCount;
-	}
-
-	/**
-	 * 
-	 * @param SampleCount
-	 *            The SampleCount
-	 */
-	public void setSampleCount(Integer SampleCount) {
-		this.SampleCount = SampleCount;
-	}
-
-	/**
-	 * 
-	 * @return The ErrorCount
-	 */
-	public Integer getErrorCount() {
-		return ErrorCount;
-	}
-
-	/**
-	 * 
-	 * @param ErrorCount
-	 *            The ErrorCount
-	 */
-	public void setErrorCount(Integer ErrorCount) {
-		this.ErrorCount = ErrorCount;
-	}
-
-	/**
-	 * 
-	 * @return The ContentType
-	 */
 	public String getContentType() {
 		return ContentType;
 	}
 
-	/**
-	 * 
-	 * @param ContentType
-	 *            The ContentType
-	 */
-	public void setContentType(String ContentType) {
-		this.ContentType = ContentType;
+	public void setContentType(String contentType) {
+		ContentType = contentType;
 	}
 
-	/**
-	 * 
-	 * @return The MediaType
-	 */
-	public String getMediaType() {
-		return MediaType;
-	}
-
-	/**
-	 * 
-	 * @param MediaType
-	 *            The MediaType
-	 */
-	public void setMediaType(String MediaType) {
-		this.MediaType = MediaType;
-	}
-
-	/**
-	 * 
-	 * @return The DataType
-	 */
 	public String getDataType() {
 		return DataType;
 	}
 
-	/**
-	 * 
-	 * @param DataType
-	 *            The DataType
-	 */
-	public void setDataType(String DataType) {
-		this.DataType = DataType;
+	public void setDataType(String dataType) {
+		DataType = dataType;
 	}
 
-	/**
-	 * 
-	 * @return The RequestHeaders
-	 */
-	public String getRequestHeaders() {
-		return RequestHeaders;
+	public String getElapsedTime() {
+		return ElapsedTime;
 	}
 
-	/**
-	 * 
-	 * @param RequestHeaders
-	 *            The RequestHeaders
-	 */
-	public void setRequestHeaders(String RequestHeaders) {
-		this.RequestHeaders = RequestHeaders;
+	public void setElapsedTime(String elapsedTime) {
+		ElapsedTime = elapsedTime;
 	}
 
-	/**
-	 * 
-	 * @return The ResponseHeaders
-	 */
-	public String getResponseHeaders() {
-		return ResponseHeaders;
+	public String getEndTime() {
+		return EndTime;
 	}
 
-	/**
-	 * 
-	 * @param ResponseHeaders
-	 *            The ResponseHeaders
-	 */
-	public void setResponseHeaders(String ResponseHeaders) {
-		this.ResponseHeaders = ResponseHeaders;
+	public void setEndTime(String endTime) {
+		EndTime = endTime;
 	}
 
-	/**
-	 * 
-	 * @return The HeadersSize
-	 */
-	public Integer getHeadersSize() {
-		return HeadersSize;
+	public int getErrorCount() {
+		return ErrorCount;
 	}
 
-	/**
-	 * 
-	 * @param HeadersSize
-	 *            The HeadersSize
-	 */
-	public void setHeadersSize(Integer HeadersSize) {
-		this.HeadersSize = HeadersSize;
+	public void setErrorCount(int errorCount) {
+		ErrorCount = errorCount;
 	}
 
-	/**
-	 * 
-	 * @return The SamplerData
-	 */
-	public String getSamplerData() {
-		return SamplerData;
+	public int getGrpThreads() {
+		return GrpThreads;
 	}
 
-	/**
-	 * 
-	 * @param SamplerData
-	 *            The SamplerData
-	 */
-	public void setSamplerData(String SamplerData) {
-		this.SamplerData = SamplerData;
+	public void setGrpThreads(int grpThreads) {
+		GrpThreads = grpThreads;
 	}
 
-	/**
-	 * 
-	 * @return The ResponseMessage
-	 */
+	public Long getIdleTime() {
+		return IdleTime;
+	}
+
+	public void setIdleTime(Long idleTime) {
+		IdleTime = idleTime;
+	}
+
+	public Long getLatency() {
+		return Latency;
+	}
+
+	public void setLatency(Long latency) {
+		Latency = latency;
+	}
+
+	public String getResponseCode() {
+		return ResponseCode;
+	}
+
+	public void setResponseCode(String responseCode) {
+		ResponseCode = responseCode;
+	}
+
 	public String getResponseMessage() {
 		return ResponseMessage;
 	}
 
-	/**
-	 * 
-	 * @param ResponseMessage
-	 *            The ResponseMessage
-	 */
-	public void setResponseMessage(String ResponseMessage) {
-		this.ResponseMessage = ResponseMessage;
+	public void setResponseMessage(String responseMessage) {
+		ResponseMessage = responseMessage;
 	}
 
-	/**
-	 * 
-	 * @return The ResponseData
-	 */
+	public Long getResponseTime() {
+		return ResponseTime;
+	}
+
+	public void setResponseTime(Long responseTime) {
+		ResponseTime = responseTime;
+	}
+
+	public int getSampleCount() {
+		return SampleCount;
+	}
+
+	public void setSampleCount(int sampleCount) {
+		SampleCount = sampleCount;
+	}
+
+	public String getSampleLabel() {
+		return SampleLabel;
+	}
+
+	public void setSampleLabel(String sampleLabel) {
+		SampleLabel = sampleLabel;
+	}
+
+	public String getStartTime() {
+		return StartTime;
+	}
+
+	public void setStartTime(String startTime) {
+		StartTime = startTime;
+	}
+
+	public String getSuccess() {
+		return Success;
+	}
+
+	public void setSuccess(String success) {
+		Success = success;
+	}
+
+	public String getThreadName() {
+		return ThreadName;
+	}
+
+	public void setThreadName(String threadName) {
+		ThreadName = threadName;
+	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setURL(String URL) {
+		this.URL = URL;
+	}
+
+	public String getTimestamp() {
+		return Timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		Timestamp = timestamp;
+	}
+
+	public String getNormalizedTimestamp() {
+		return NormalizedTimestamp;
+	}
+
+	public void setNormalizedTimestamp(String normalizedTimestamp) {
+		NormalizedTimestamp = normalizedTimestamp;
+	}
+
 	public String getResponseData() {
 		return ResponseData;
 	}
 
-	/**
-	 * 
-	 * @param ResponseData
-	 *            The ResponseData
-	 */
-	public void setResponseData(String ResponseData) {
-		this.ResponseData = ResponseData;
+	public void setResponseData(String responseData) {
+		ResponseData = responseData;
 	}
 
-	/**
-	 * 
-	 * @return The BodySize
-	 */
-	public Integer getBodySize() {
-		return BodySize;
+	public int getBuildNumber() {
+		return BuildNumber;
 	}
 
-	/**
-	 * 
-	 * @param BodySize
-	 *            The BodySize
-	 */
-	public void setBodySize(Integer BodySize) {
-		this.BodySize = BodySize;
+	public void setBuildNumber(int buildNumber) {
+		BuildNumber = buildNumber;
 	}
-
-	/**
-	 * 
-	 * @return The Bytes
-	 */
-	public Integer getBytes() {
-		return Bytes;
-	}
-
-	/**
-	 * 
-	 * @param Bytes
-	 *            The Bytes
-	 */
-	public void setBytes(Integer Bytes) {
-		this.Bytes = Bytes;
-	}
-
 }
