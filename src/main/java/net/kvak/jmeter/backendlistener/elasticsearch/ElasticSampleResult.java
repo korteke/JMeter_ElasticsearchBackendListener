@@ -69,9 +69,6 @@ public class ElasticSampleResult {
 	@SerializedName("NormalizedTimestamp")
 	private String NormalizedTimestamp;
 
-	@SerializedName("ResponseData")
-	private String ResponseData;
-
 	@SerializedName("BuildNumber")
 	private int BuildNumber;
 
@@ -260,14 +257,6 @@ public class ElasticSampleResult {
 
 	public void setNormalizedTimestamp(String normalizedTimestamp) {
 		NormalizedTimestamp = normalizedTimestamp;
-	}
-
-	public String getResponseData() {
-		return ResponseData;
-	}
-
-	public void setResponseData(String responseData) {
-		ResponseData = responseData;
 	}
 
 	public int getBuildNumber() {

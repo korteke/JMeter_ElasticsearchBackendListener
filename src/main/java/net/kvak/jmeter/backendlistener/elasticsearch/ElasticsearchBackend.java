@@ -165,7 +165,6 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
                 esResu.setThreadName(sampleResult.getThreadName());
                 esResu.setURL(sampleResult.getUrlAsString());
                 esResu.setTimestamp(sdf.format(new Date(sampleResult.getTimeStamp())));
-                esResu.setResponseData(sampleResult.getResponseDataAsString());
                 esResu.setBuildNumber(BuildNumber);
                 esResu.setElapsedTime(sdf.format(elapsedDate.getTime()));
 
