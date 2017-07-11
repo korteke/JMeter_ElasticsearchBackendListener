@@ -10,7 +10,7 @@ Elasticsearch Backend Listener for Apache JMeter 3.x
 ### Prerequisities
 
 Java JDK 8   
-Jmeter 3.x   
+Jmeter 3.2 +   
 Elasticsearch 5.x   
 
 ### Installing
