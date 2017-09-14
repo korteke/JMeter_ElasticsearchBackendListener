@@ -1,17 +1,17 @@
 package net.kvak.jmeter.backendlistener.elasticsearch;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jmeter.JMeter;
-import org.apache.jmeter.threads.JMeterContext;
 import org.apache.jmeter.threads.JMeterContextService;
-import org.apache.jmeter.threads.JMeterVariables;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.samplers.SampleResult;
@@ -28,6 +28,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import javax.net.ssl.*;
 
 /**
  * TODO: Add javadocs..
@@ -79,7 +81,9 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 
     @Override
     public void setupTest(BackendListenerContext ctx) throws Exception {
+        //OkHttpClient client = new OkHttpClient();
         OkHttpClient client = new OkHttpClient();
+        client = trustAllSslClient(client);
 
         String esEndpoint = ctx.getParameter(ES_PROTOCOL) + "://" + ctx.getParameter(ES_HOST) + ":" + ctx.getParameter(ES_PORT);
         Request request = new Request.Builder().url(esEndpoint).build();
@@ -92,12 +96,17 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
             isESAlive = resu ? true : false;
 
             if (isESAlive) {
+                System.out.println("ElasticSearch is reachable!");
                 LOGGER.info("Elasticsearch is UP!");
             } else {
+                System.out.println("ElasticSearch is unreachable!");
                 LOGGER.error("Elasticsearch is DOWN!");
             }
 
+            System.out.println(response.message());
+
         } catch (IOException e) {
+            LOGGER.debug(e.getMessage());
             LOGGER.error("Error with the Elasticsearch connection.");
         }
 
@@ -118,7 +127,9 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 
         synchronized (STATIC_LOCK) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+           // OkHttpClient client = new OkHttpClient();
             OkHttpClient client = new OkHttpClient();
+            client = trustAllSslClient(client);
             SimpleDateFormat sdf = new SimpleDateFormat(ctx.getParameter(ES_TIMESTAMP));
             SimpleDateFormat formatter = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
 
@@ -224,6 +235,53 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
             if (response != null && response.body() != null)
                 response.body().close();
         }
-
     }
+
+    /*
+     * ------------------------------------------------- BEGIN SOURCE CREDITS --------------------------------------------------
+     * SOURCE : https://gist.github.com/mefarazath/c9b588044d6bffd26aac3c520660bf40
+     * All credits towards mefarazath
+     * This is very bad practice and should NOT be used in production.
+     */
+    private static final TrustManager[] trustAllCerts = new TrustManager[] {
+            new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return new java.security.cert.X509Certificate[]{};
+                }
+            }
+    };
+    private static final SSLContext trustAllSslContext;
+    static {
+        try {
+            trustAllSslContext = SSLContext.getInstance("SSL");
+            trustAllSslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private static final SSLSocketFactory trustAllSslSocketFactory = trustAllSslContext.getSocketFactory();
+
+    /*
+     * This should not be used in production unless you really don't care
+     * about the security. Use at your own risk.
+     */
+    public static OkHttpClient trustAllSslClient(OkHttpClient client) {
+        LOGGER.info("Using the trustAllSslClient is highly discouraged and should not be used in Production!");
+        OkHttpClient.Builder builder = client.newBuilder();
+        builder.sslSocketFactory(trustAllSslSocketFactory, (X509TrustManager)trustAllCerts[0]);
+        builder.hostnameVerifier((hostname, session) -> true);
+        return builder.build();
+    }
+    /*
+     * ------------------------------------------------- END SOURCE CREDITS --------------------------------------------------
+     * */
 }
