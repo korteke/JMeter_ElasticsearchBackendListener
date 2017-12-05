@@ -6,65 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17954932-683d-48a8-a956-b228c3a91c71" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_9_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/elasticsearch-backend-listener-1.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/elasticsearch-backend-listener/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/elasticsearch-backend-listener/net/kvak/jmeter/backendlistener/elasticsearch/ElasticSampleResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/elasticsearch-backend-listener/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/elasticsearch-backend-listener/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/elasticsearch_backend_listener/elasticsearch-backend-listener-1.5.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/main/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/main/net/kvak/jmeter/backendlistener/elasticsearch/ElasticSampleResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/main/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/main/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend_Backup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_components.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_core.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_ftp.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_functions.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_http.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_java.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_jdbc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_jms.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_junit.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_ldap.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_mail.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_mongodb.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_native.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/ApacheJMeter_tcp.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-codec-1.10.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-collections-3.2.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-dbcp2-2.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-exec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-io-2.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-jexl-2.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-jexl3-3.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-lang-2.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-lang3-3.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-math3-3.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-net-3.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/commons-pool2-2.4.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/httpclient-4.5.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/httpcore-4.4.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/httpcore-nio-4.4.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/httpmime-4.5.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/jmeter-plugins-cmn-jmeter-0.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/jmeter-plugins-common-1.4.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/jorphan.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/lib/okhttp-3.9.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/main.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jmeter.backendlistener.elasticsearch.iml" afterPath="$PROJECT_DIR$/jmeter.backendlistener.elasticsearch.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend.java" afterPath="$PROJECT_DIR$/src/main/java/net/kvak/jmeter/backendlistener/elasticsearch/ElasticsearchBackend.java" />
-    </list>
+    <list default="true" id="17954932-683d-48a8-a956-b228c3a91c71" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,11 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="153">
+              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="764">
+              <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -509,14 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/kvak/jmeter/backendlistener/elasticsearch/ElasticSampleResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -540,8 +484,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
           <folding />
         </state>
       </provider>
