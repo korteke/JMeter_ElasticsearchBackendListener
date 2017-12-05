@@ -4,16 +4,13 @@
 
 	<groupId>net.kvak</groupId>
 	<artifactId>jmeter.backendlistener.elasticsearch</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.5.2</version>
 	<packaging>jar</packaging>
-
 	<name>jmeter.backendlistener.elasticsearch</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.jmeter</groupId>
@@ -67,7 +64,6 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>

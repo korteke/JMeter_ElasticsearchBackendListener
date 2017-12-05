@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: net.kvak.jmeter.backendlistener.elasticsearch.Elasticsearc
- hBackend
+Main-Class: net.kvak.jmeter.backendlistener.elasticsearch.ElasticsearchBackend_Backup
 
