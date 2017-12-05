@@ -104,7 +104,6 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
             } catch (Exception e) {
                 printStackTrace(e);
             }
-
             elasticData.setBodySize(sr.getBodySize());
             elasticData.setBytes(sr.getBytes());
             elasticData.setConnectTime(sr.getConnectTime());
@@ -135,6 +134,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
 
             try {
                 response = callES(esEndpoint, elasticDataJson, client);
+                response.close();
             } catch (IOException e) {
                 printStackTrace(e);
             }
