@@ -67,7 +67,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
             elasticsearchState = response.isSuccessful();
             response.close();
         } catch (Exception e) {
-            printStackTrace(e);
+            e.printStackTrace();
         }
     }
 
@@ -102,7 +102,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
                 String sElapsed = String.format("2017-01-01 %02d:%02d:%02d", cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
                 elapsedDate = formatter.parse(sElapsed);
             } catch (Exception e) {
-                printStackTrace(e);
+                e.printStackTrace();
             }
             elasticData.setBodySize(sr.getBodySize());
             elasticData.setBytes(sr.getBytes());
@@ -136,7 +136,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
                 response = callES(esEndpoint, elasticDataJson, client);
                 response.close();
             } catch (IOException e) {
-                printStackTrace(e);
+                e.printStackTrace();
             }
             index++;
         }
@@ -149,7 +149,7 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
         try {
             return client.newCall(req).execute();
         } catch (Exception e) {
-            printStackTrace(e);
+            e.printStackTrace();
             return null;
         }
     }
@@ -193,9 +193,5 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
         builder.hostnameVerifier((hostname, session) -> true);
         builder.connectionPool(cp);
         return builder.build();
-    }
-
-    public static void printStackTrace(Exception e) {
-        System.out.println(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e));
     }
 }
