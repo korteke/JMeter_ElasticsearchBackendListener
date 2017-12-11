@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jmeter.backendlistener.elasticsearch">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/jmeter.backendlistener.elasticsearch.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
