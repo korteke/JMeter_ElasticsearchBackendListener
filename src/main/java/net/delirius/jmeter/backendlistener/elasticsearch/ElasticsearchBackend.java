@@ -1,4 +1,4 @@
-package net.kvak.jmeter.backendlistener.elasticsearch;
+package net.delirius.jmeter.backendlistener.elasticsearch;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author korteke
+ * @author Delirius325
  */
 public class ElasticsearchBackend extends AbstractBackendListenerClient {
     private static final String ES_PROTOCOL = "elasticsearch.protocol";
@@ -78,54 +78,11 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
         
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         OkHttpClient client = trustAllSslClient();
-        SimpleDateFormat sdf = new SimpleDateFormat(ctx.getParameter(ES_TIMESTAMP));
-        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
         int index = 0;
         
         //foreach sampler
         for(SampleResult sr : sampleResults) {
-            ElasticSampleResult elasticData = new ElasticSampleResult();
-            Date elapsedDate = new Date();
-            int BuildNumber = (JMeterUtils.getProperty("BuildNumber") != null && JMeterUtils.getProperty("BuildNumber").trim() != "") ? Integer.parseInt(JMeterUtils.getProperty("BuildNumber")) : 0;
-            //Calculate the elapsed time (Starting from midnight on a random day - enables us to compare of two loads over their duration)
-            try {
-                long start = JMeterContextService.getTestStartTime();
-                long end = System.currentTimeMillis();
-                long elapsed = (end - start);
-                long minutes = (elapsed / 1000) / 60;
-                long seconds = (elapsed / 1000) % 60;
-
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.HOUR_OF_DAY, 0); //If there is more than an hour of data, the number of minutes/seconds will increment this
-                cal.set(Calendar.MINUTE, (int) minutes);
-                cal.set(Calendar.SECOND, (int) seconds);
-                String sElapsed = String.format("2017-01-01 %02d:%02d:%02d", cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
-                elapsedDate = formatter.parse(sElapsed);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            elasticData.setBodySize(sr.getBodySize());
-            elasticData.setBytes(sr.getBytes());
-            elasticData.setConnectTime(sr.getConnectTime());
-            elasticData.setContentType(sr.getContentType());
-            elasticData.setDataType(sr.getDataType());
-            elasticData.setEndTime(Long.toString(sr.getTime()));
-            elasticData.setErrorCount(sr.getErrorCount());
-            elasticData.setGrpThreads(sr.getGroupThreads());
-            elasticData.setIdleTime(sr.getIdleTime());
-            elasticData.setLatency(sr.getLatency());
-            elasticData.setResponseMessage(sr.getResponseMessage());
-            elasticData.setResponseTime((sr.getEndTime() - sr.getStartTime()));
-            elasticData.setSampleCount(sr.getSampleCount());
-            elasticData.setSampleLabel(sr.getSampleLabel());
-            elasticData.setStartTime(sdf.format(new Date(sr.getStartTime())));
-            elasticData.setThreadName(sr.getThreadName());
-            elasticData.setURL(sr.getUrlAsString());
-            elasticData.setTimestamp(sdf.format(new Date(sr.getTimeStamp())));
-            elasticData.setBuildNumber(BuildNumber);
-            elasticData.setElapsedTime(sdf.format(elapsedDate.getTime()));
-            elasticData.setResponseCode((sr.isResponseCodeOK() && StringUtils.isNumeric(sr.getResponseCode())) ? sr.getResponseCode() : ctx.getParameter(ES_STATUSCODE));
-
+            ElasticSampleResult elasticData = setElasticData(sr, ctx);
             String elasticDataJson = gson.toJson(elasticData);
             String esEndpoint = ctx.getParameter(ES_PROTOCOL) + "://" + ctx.getParameter(ES_HOST) + ":"
                     + ctx.getParameter(ES_PORT) + "/" + ctx.getParameter(ES_INDEX) + "/"
@@ -140,6 +97,53 @@ public class ElasticsearchBackend extends AbstractBackendListenerClient {
             }
             index++;
         }
+    }
+
+    private ElasticSampleResult setElasticData(SampleResult sr, BackendListenerContext ctx) {
+        ElasticSampleResult esr = new ElasticSampleResult();
+        SimpleDateFormat sdf = new SimpleDateFormat(ctx.getParameter(ES_TIMESTAMP));
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+        Date elapsedDate = new Date();
+        int BuildNumber = (JMeterUtils.getProperty("BuildNumber") != null && JMeterUtils.getProperty("BuildNumber").trim() != "") ? Integer.parseInt(JMeterUtils.getProperty("BuildNumber")) : 0;
+        //Calculate the elapsed time (Starting from midnight on a random day - enables us to compare of two loads over their duration)
+        try {
+            long start = JMeterContextService.getTestStartTime();
+            long end = System.currentTimeMillis();
+            long elapsed = (end - start);
+            long minutes = (elapsed / 1000) / 60;
+            long seconds = (elapsed / 1000) % 60;
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.HOUR_OF_DAY, 0); //If there is more than an hour of data, the number of minutes/seconds will increment this
+            cal.set(Calendar.MINUTE, (int) minutes);
+            cal.set(Calendar.SECOND, (int) seconds);
+            String sElapsed = String.format("2017-01-01 %02d:%02d:%02d", cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
+            elapsedDate = formatter.parse(sElapsed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        esr.setBodySize(sr.getBodySize());
+        esr.setBytes(sr.getBytes());
+        esr.setConnectTime(sr.getConnectTime());
+        esr.setContentType(sr.getContentType());
+        esr.setDataType(sr.getDataType());
+        esr.setEndTime(Long.toString(sr.getTime()));
+        esr.setErrorCount(sr.getErrorCount());
+        esr.setGrpThreads(sr.getGroupThreads());
+        esr.setIdleTime(sr.getIdleTime());
+        esr.setLatency(sr.getLatency());
+        esr.setResponseMessage(sr.getResponseMessage());
+        esr.setResponseTime((sr.getEndTime() - sr.getStartTime()));
+        esr.setSampleCount(sr.getSampleCount());
+        esr.setSampleLabel(sr.getSampleLabel());
+        esr.setStartTime(sdf.format(new Date(sr.getStartTime())));
+        esr.setThreadName(sr.getThreadName());
+        esr.setURL(sr.getUrlAsString());
+        esr.setTimestamp(sdf.format(new Date(sr.getTimeStamp())));
+        esr.setBuildNumber(BuildNumber);
+        esr.setElapsedTime(sdf.format(elapsedDate.getTime()));
+        esr.setResponseCode((sr.isResponseCodeOK() && StringUtils.isNumeric(sr.getResponseCode())) ? sr.getResponseCode() : ctx.getParameter(ES_STATUSCODE));
+        return esr;
     }
 
     private Response callES(String url, String json, OkHttpClient client) throws IOException {

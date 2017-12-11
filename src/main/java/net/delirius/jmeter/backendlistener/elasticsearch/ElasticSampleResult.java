@@ -1,4 +1,4 @@
-package net.kvak.jmeter.backendlistener.elasticsearch;
+package net.delirius.jmeter.backendlistener.elasticsearch;
 
 import com.google.gson.annotations.SerializedName;
 

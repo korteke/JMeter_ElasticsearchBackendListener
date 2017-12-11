@@ -25,7 +25,7 @@ $projectHome == where you cloned this repository
 
 ### Configure
 * Add new Backend Listener to your Test Suite (Add --> Listener --> Backend Listener)
-* Backend Listener Implementation = net.kvak.jmeter.backendlistener.elasticsearch.ElasticsearchBackend
+* Backend Listener Implementation = ElasticsearchBackend
 * Configure Elasticsearch parameters
 
 ### Remarks
