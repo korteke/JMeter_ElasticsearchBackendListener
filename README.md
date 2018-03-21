@@ -1,3 +1,5 @@
+#### This version of Korteke's JMeter Backend Listener contains the ResponseTime of samples, the elapsed time and has support for build number when launched from Jenkins!
+
 # JMeter_ElasticsearchBackendListener
 Elasticsearch Backend Listener for Apache JMeter 3.x
 
@@ -7,9 +9,9 @@ Elasticsearch Backend Listener for Apache JMeter 3.x
 
 ### Prerequisities
 
-Java JDK >7   
-Jmeter 3.x   
-Elasticsearch 2.x   
+Java JDK 8   
+Jmeter 3.2 +   
+Elasticsearch 5.x   
 
 ### Installing
 
@@ -23,7 +25,7 @@ $projectHome == where you cloned this repository
 
 ### Configure
 * Add new Backend Listener to your Test Suite (Add --> Listener --> Backend Listener)
-* Backend Listener Implementation = net.kvak.jmeter.backendlistener.elasticsearch.ElasticsearchBackend
+* Backend Listener Implementation = ElasticsearchBackend
 * Configure Elasticsearch parameters
 
 ### Remarks
